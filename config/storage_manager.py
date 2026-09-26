@@ -7,6 +7,8 @@ class Storage:
 
     def update_tokens(self, count, model=None):
         metrics = self.load_metrics()
+        if metrics == None:
+            metrics = {"usage":{"total_tok_in": 0, "total_tok_out": 0, "models": {}}}
         usage = metrics["usage"]
         usage["total_tok_in"] += count[0]
         usage["total_tok_out"] += count[1]
@@ -20,5 +22,8 @@ class Storage:
             json.dump(metrics, file, indent=4)
 
     def load_metrics(self):
-        with open(self.file, "r") as file:
-            return json.load(file)
+        try:
+            with open(self.file, "r") as file:
+                return json.load(file)
+        except:
+            return None
