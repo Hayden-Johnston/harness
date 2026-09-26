@@ -28,7 +28,7 @@ class CLI:
                     if event.type == "response.output_text.delta":
                         print(event.delta, end="", flush=True)
                     elif event.type == "response.completed":
-                        print((event.response.usage.input_tokens, event.response.usage.output_tokens))
+                        self.cfg.storage.update_tokens((event.response.usage.input_tokens, event.response.usage.output_tokens), self.agent.model)
 
     def cmd_handler(self, cmd: Command):
         if cmd.name == "help":

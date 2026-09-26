@@ -11,7 +11,10 @@ class Agent:
         self.system = system
         self.system = identity
         self.session = session.Session()
-        self.client = OpenAI_Client("http://172.16.1.201:8080/v1", "LLAMA_KEY", "qwen3.8-27b-fable")
+        self.model = "qwen3.8-27b-fable"
+        self.endpoint = "http://172.16.1.201:8080/v1"
+        self.api_key = "LLAMA_KEY"
+        self.client = OpenAI_Client(self.endpoint, self.api_key, self.model)
 
     def run(self, req):
         return self.client.get_response(req)
