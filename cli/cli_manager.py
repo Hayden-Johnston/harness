@@ -1,4 +1,5 @@
-from config import command_registry
+from rich import print
+from config.command_registry import Command
 
 class CLI:
     """
@@ -7,7 +8,6 @@ class CLI:
     def __init__(self, config=None, agent=None):
         self.cfg = config
         self.agent = agent
-        self.cmds = self.cfg.cmds.cmds
 
     def config(self):
         pass
@@ -30,7 +30,7 @@ class CLI:
                     elif event.type == "response.completed":
                         print((event.response.usage.input_tokens, event.response.usage.output_tokens))
 
-    def cmd_handler(self, cmd: command_registry.Command):
+    def cmd_handler(self, cmd: Command):
         if cmd.name == "help":
             print(cmd.handler())
         elif cmd.name == "new":
@@ -38,6 +38,6 @@ class CLI:
         elif cmd.name == "compress":
             pass
 
-    #TODO: implement slash commands (/new, /models)
+    #TODO: implement parameters for slash commands like help or future plan/verify commands.
     #TODO: toolchain progress
     #TODO: rich + prompt_toolkit?

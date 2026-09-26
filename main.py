@@ -8,7 +8,7 @@ def main():
     cfg = config_manager.Config()
     agent = agent_manager.Agent(cfg)
     cli = cli_manager.CLI(cfg, agent)
-    print()
+    print("Welcome to Hayden Agent")
     cli.run()
 
 if __name__ == "__main__":

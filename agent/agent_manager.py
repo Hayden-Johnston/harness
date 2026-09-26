@@ -1,6 +1,5 @@
 from agent import session
-from providers import openai_client
-
+from providers.openai_client import OpenAI_Client
 class Agent:
     """
     Agent identity handler for main and subagents. Agents manage their own sessions.
@@ -12,7 +11,7 @@ class Agent:
         self.system = system
         self.system = identity
         self.session = session.Session()
-        self.client = openai_client.OpenAI_Client("http://172.16.1.201:8080/v1", "LLAMA_KEY", "qwen3.8-27b-fable")
+        self.client = OpenAI_Client("http://172.16.1.201:8080/v1", "LLAMA_KEY", "qwen3.8-27b-fable")
 
     def run(self, req):
         return self.client.get_response(req)
@@ -25,4 +24,4 @@ class Agent:
     # report tool results to LLM
     # stream response to user
 
-    # start by writing the classic agent loop.  You can add classifiers later and DAG later.
+    # start by writing the classic agent loop.  You can add classifiers and DAG later.

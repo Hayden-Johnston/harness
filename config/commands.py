@@ -1,16 +1,19 @@
 import sys
-from agent import agent_manager
-from agent import session
+from agent.agent_manager import Agent
+from agent.session import Session
 
 def exit():
     print("Shutting down...")
     sys.exit(0)
 
 def help(command=None):
+    if command == None:
+        return "syntax /help [command]: No valid command detected."
     return "helping"
 
-def new(agent: agent_manager.Agent):
-    agent.session = session.Session()
+def new(agent: Agent):
+    agent.session = Session()
+    return "New session initialized"
 
-def compress(agent: agent_manager.Agent):
+def compress(agent: Agent):
     pass

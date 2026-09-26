@@ -5,3 +5,5 @@ class Tool:
 
     def call(self):
         pass
+
+    #TODO: Consider standard tool schemas and how data is restructured for a classifier/LLM.
