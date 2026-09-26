@@ -2,6 +2,7 @@
 .venv
 .git
 .pycache
+__pycache__
 Potential-features.md
 TODO.md
 metrics.json

@@ -19,11 +19,14 @@ class Config:
         return config
 
     def get_models(self):
-        models = []
+        models = {}
         for e in self.endpoints:
+            m = []
             client = OpenAI_Client(e["url"], e["key"])
-            models.append(client.get_models())
-            #TODO: we should return a map of the useful model names as keys and the ctx_size as values.
+            m.append(client.get_models())
+            for i in m[0]:
+                models[i.id] = e["url"]
+        return models
 
     def initialize_commands(self):
         return self.cmds.load_commands()
